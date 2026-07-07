@@ -57,14 +57,12 @@ def triangulate_stereo_point(P1, P2, point1, point2):
 
 
 def get_stereo_inliers(img1, kp1, des1, img2, kp2, des2):
-    flann = cv2.FlannBasedMatcher(
-        dict(algorithm=1, trees=5),
-        dict(checks=50)
-    )
-    all_matches = [m for m, _ in flann.knnMatch(des1, des2, k=2)]
+    bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
+    matches = bf.match(des1, des2)
     return [
-        m for m in all_matches
+        m for m in matches
         if abs(kp1[m.queryIdx].pt[1] - kp2[m.trainIdx].pt[1]) <= EPIPOLAR_THRESH
+        and kp1[m.queryIdx].pt[0] > kp2[m.trainIdx].pt[0]
     ]
 
 

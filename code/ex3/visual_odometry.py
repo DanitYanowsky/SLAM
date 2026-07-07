@@ -224,7 +224,7 @@ def plot_trajectory(traj_est, traj_gt, out_path='out_full_trajectory.png'):
 
 if __name__ == '__main__':
     START_FRAME = 0
-    NUM_FRAMES  = 2000
+    NUM_FRAMES  = 3500
 
     traj, extr = run_odometry(start_frame=START_FRAME, num_frames=NUM_FRAMES)
     gt_full    = load_ground_truth(GT_PATH)

@@ -1,6 +1,10 @@
 # Dataset files (large binaries - don't commit)
 dataset/
 
+# Data files
+*.npy
+*.pkl
+
 # Python
 __pycache__/
 *.py[cod]
